@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 
 const _7aa787c8 = () => interopDefault(import('../pages/wpusers.vue' /* webpackChunkName: "pages/wpusers" */))
-const _b3e76eae = () => interopDefault(import('../pages/wpusers copy.vue' /* webpackChunkName: "pages/wpusers copy" */))
 const _f59b484e = () => interopDefault(import('../pages/auth/callback.vue' /* webpackChunkName: "pages/auth/callback" */))
 const _2b1ea385 = () => interopDefault(import('../pages/auth/login.vue' /* webpackChunkName: "pages/auth/login" */))
 const _be6fe992 = () => interopDefault(import('../pages/auth/register.vue' /* webpackChunkName: "pages/auth/register" */))
@@ -87,10 +86,6 @@ export function createRouter() {
       path: "/wpusers",
       component: _7aa787c8,
       name: "wpusers"
-    }, {
-      path: "/wpusers copy",
-      component: _b3e76eae,
-      name: "wpusers copy"
     }, {
       path: "/auth/callback",
       component: _f59b484e,

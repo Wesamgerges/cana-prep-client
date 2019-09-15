@@ -1,6 +1,5 @@
 <template>
   <b-container fluid>
-      <h1 class="text-center" >Cana Prep</h1>
     <!-- User Interface controls -->
     <b-row>
       <b-col lg="6" class="my-1">
@@ -59,13 +58,12 @@
     <!-- Main table element -->
     <b-table
       show-empty
-      stacked="sm"
       striped
       bordered
       outlined
       hover
       responsive='sm'
-      
+      sort-icon-left
       sticky-header 
       head-variant="dark"
       :items="items"
@@ -74,10 +72,7 @@
       :current-page="currentPage"
       :per-page="perPage"
       :filter="filter"
-      :filterIncludedFields="filterOn"
-      :sort-by.sync="sortBy"
-      :sort-desc.sync="sortDesc"
-      :sort-direction="sortDirection"
+      :filterIncludedFields="filterOn"    
       @filtered="onFiltered"
     >
      <template v-slot:thead-top="data">
@@ -89,7 +84,7 @@
       </template>
 
       <template v-slot:cell(bride)="row"> 
-         <b-button size="sm" @click="getCertificate(row.item, row.index, 1)" variant="primary" class="mr-1">
+         <b-button size="sm" @click="getCertificate(row.item, row.index, 1)" variant="danger" class="mr-1">
           Bride
         </b-button>           
       </template>
@@ -99,13 +94,7 @@
           Groom
         </b-button>               
       </template>
-
     </b-table>
-
-    <!-- Info modal -->
-    <b-modal :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
-      <pre>{{ infoModal.content }}</pre>
-    </b-modal>
   </b-container>
 </template>
 
@@ -116,11 +105,10 @@
       return {
         items: [],
         fields: [
-          { label: 'ID', key: 'ID' },
-          { label: 'Name', key: 'gname' },  
-          { label: 'Name', key: 'bname' },  
-          { label: 'Email', key: 'user_email' },    
-            
+          { label: 'ID', key: 'ID', sortable: true },
+          { label: 'Groom', key: 'gname', sortable: true },  
+          { label: 'Bride', key: 'bname', sortable: true },  
+          { label: 'Email', key: 'user_email', sortable: true },    
           { label: '1', key: 'lectures.1' },  
           { label: '2', key: 'lectures.2' }, 
           { label: '3', key: 'lectures.3' },  
@@ -134,25 +122,16 @@
           { label: '11', key: 'lectures.11' },  
           { label: '12', key: 'lectures.12' },                      
           { key: 'bride', label: 'Bride' } ,
-          { key: 'groom', label: 'Groom' } 
-
-            
+          { key: 'groom', label: 'Groom' }, 
         ],
         totalRows: 1,
         currentPage: 1,
         perPage: 50,
         pageOptions: [ 25, 50, 100],
-        sortBy: '',
-        sortDesc: false,
-        sortDirection: 'asc',
+        sortBy: 'gname',
         filter: null,
         loading: false,
-        filterOn: [],
-        infoModal: {
-          id: 'info-modal',
-          title: '',
-          content: ''
-        }
+        filterOn: [],       
       }
     },
     computed: {
@@ -166,6 +145,9 @@
       }
     },
     async created() {
+      if(!this.$auth.hasScope('admin')) {
+        this.$router.push('/')
+      }
         await this.getDataFromApi();
         // Set the initial number of items
         this.totalRows = this.items.length
@@ -191,10 +173,7 @@
             console.error(error);
         }
       },
-      resetInfoModal() {
-        this.infoModal.title = ''
-        this.infoModal.content = ''
-      },
+     
       onFiltered(filteredItems) {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
@@ -214,3 +193,10 @@
     }
   }
 </script>
+
+<style scoped>
+.b-table-sticky-header {
+    overflow-y: visible; 
+    max-height: 800px;
+}
+</style>

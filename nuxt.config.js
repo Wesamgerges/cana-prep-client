@@ -74,7 +74,7 @@ env: {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: process.env.apiBaseUrl
+    baseURL: process.env.API_BASE_URL || 'http://localhost:3333/api/v1'
   },
   router: {
     middleware: ['auth'],
@@ -111,7 +111,7 @@ env: {
       },
       google: {
         // client_id: process.env.GOOGLE_APP_ID,
-        client_id: '1067701340140-r3s0nd8u4t963s0vuib198vr18fd1otr.apps.googleusercontent.com',
+        client_id: process.env.GOOGLE_APP_ID || '1067701340140-r3s0nd8u4t963s0vuib198vr18fd1otr.apps.googleusercontent.com',
       },
     },
     redirect: {

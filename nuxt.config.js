@@ -32,6 +32,12 @@ export default {
   /*
   ** Plugins to load before mounting the App
   */
+
+env: {
+  baseUrl: process.env.HOST || 'http://localhost:3000',
+  apiBaseUrl: process.env.API_BASE_URL || 'http://127.0.0.1:3333/api/v1'
+},
+
   plugins: [
   ],
   /*
@@ -68,7 +74,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://127.0.0.1:3333/api/v1'
+    baseURL: process.env.apiBaseUrl
   },
   router: {
     middleware: ['auth'],

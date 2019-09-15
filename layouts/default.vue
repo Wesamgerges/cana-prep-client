@@ -1,5 +1,5 @@
 <template>
-  <div class='container'>
+  <div>
     <div>
       <b-navbar toggleable="lg" type="dark" variant="primary">
         <b-navbar-brand href="#">CanaPrep</b-navbar-brand>
@@ -22,7 +22,7 @@
         </b-collapse>
       </b-navbar>
     </div>    
-    <nuxt />
+    <nuxt class="container" />
   </div>
 </template>
 

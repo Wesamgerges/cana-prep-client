@@ -145,7 +145,8 @@
       }
     },
     async created() {
-      if(!this.$auth.hasScope('admin')) {
+      console.log(await this.$auth.hasScope('admin'))
+      if(!await this.$auth.hasScope('admin')) {
         this.$router.push('/')
       }
         await this.getDataFromApi();

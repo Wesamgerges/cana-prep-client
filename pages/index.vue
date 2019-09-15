@@ -1,32 +1,18 @@
 <template>
   <div class="container">
 
-    <h1 v-if="$auth.hasScope('admin')"> Admin area </h1>
-    <div>
-      <h1 class="title">
-        client
-      </h1>
-      <h2 class="subtitle">
-        Camp V4
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-
+    <div v-if="$auth.hasScope('admin')">
+      <h1 > Admin area </h1>
+      <div>
+        <h1 class="title"> Cana Prep </h1>
+        <h2 class="subtitle"> V4 </h2>
+        
         <b-button @click.prevent="logout" variant="outline-success">Logout</b-button>
+        <nuxt-link class="btn btn-primary" to="/wpusers"> Users </nuxt-link>
       </div>
+    </div>
+    <div v-else>
+      Restricted area
     </div>
   </div>
 </template>

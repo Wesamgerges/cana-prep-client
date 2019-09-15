@@ -1,6 +1,6 @@
 <template>
   <b-container fluid>
-      <h1>Cana Prep</h1>
+      <h1 class="text-center" >Cana Prep</h1>
     <!-- User Interface controls -->
     <b-row>
       <b-col lg="6" class="my-1">
@@ -24,12 +24,12 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col sm="2" md="3" class="my-1">
+      <b-col sm="4" md="6" class="my-1">
         <b-form-group
           label="Per page"
           label-cols-sm="6"
           label-cols-md="4"
-          label-cols-lg="2"
+          label-cols-lg="3"
           label-align-sm="right"
           label-size="sm"
           label-for="perPageSelect"
@@ -59,11 +59,12 @@
     <!-- Main table element -->
     <b-table
       show-empty
-      stacked="md"
+      stacked="sm"
       striped
       bordered
       outlined
       hover
+      responsive='sm'
       
       sticky-header 
       head-variant="dark"
@@ -79,23 +80,26 @@
       :sort-direction="sortDirection"
       @filtered="onFiltered"
     >
-      <template v-slot:cell(name)="row">
-        {{ row.value.first }} {{ row.value.last }}
+     <template v-slot:thead-top="data">
+        <b-tr>
+          <b-th class="bg-primary text-center" colspan="4"  style="border:none;">User</b-th>
+          <b-th class="bg-primary text-center" colspan="12" style="border:none;">Lectures</b-th>
+          <b-th class="bg-primary text-center" colspan="3"  style="border:none;">Certificate</b-th>          
+        </b-tr>
       </template>
 
-      <template v-slot:cell(actions)="row"> 
-        <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
-          Certificate
-        </b-button>       
+      <template v-slot:cell(bride)="row"> 
+         <b-button size="sm" @click="getCertificate(row.item, row.index, 1)" variant="primary" class="mr-1">
+          Bride
+        </b-button>           
       </template>
 
-      <template v-slot:row-details="row">
-        <b-card>
-          <ul>
-            <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
-          </ul>
-        </b-card>
+      <template v-slot:cell(groom)="row"> 
+        <b-button size="sm" @click="getCertificate(row.item, row.index, 0)" variant="primary" class="mr-1">
+          Groom
+        </b-button>               
       </template>
+
     </b-table>
 
     <!-- Info modal -->
@@ -112,24 +116,31 @@
       return {
         items: [],
         fields: [
-            { label: 'ID', key: 'ID' },
-                  
-            {
-            label: 'User Name',
-            align: 'left',
-            sortable: true,
-            key: 'display_name',
-          },
-          { label: 'Name', key: 'full_name' },  
-          { label: 'Email', key: 'user_email' },
-          { label: 'Nicename', key: 'user_nicename' },
-          { label: 'Registered On', key: 'user_registered'},    
-          { key: 'actions', label: 'Actions' } 
+          { label: 'ID', key: 'ID' },
+          { label: 'Name', key: 'gname' },  
+          { label: 'Name', key: 'bname' },  
+          { label: 'Email', key: 'user_email' },    
+            
+          { label: '1', key: 'lectures.1' },  
+          { label: '2', key: 'lectures.2' }, 
+          { label: '3', key: 'lectures.3' },  
+          { label: '4', key: 'lectures.4' }, 
+          { label: '5', key: 'lectures.5' },  
+          { label: '6', key: 'lectures.6' }, 
+          { label: '7', key: 'lectures.7' },  
+          { label: '8', key: 'lectures.8' }, 
+          { label: '9', key: 'lectures.9' },  
+          { label: '10', key: 'lectures.10' }, 
+          { label: '11', key: 'lectures.11' },  
+          { label: '12', key: 'lectures.12' },                      
+          { key: 'bride', label: 'Bride' } ,
+          { key: 'groom', label: 'Groom' } 
+
             
         ],
         totalRows: 1,
         currentPage: 1,
-        perPage: 25,
+        perPage: 50,
         pageOptions: [ 25, 50, 100],
         sortBy: '',
         sortDesc: false,
@@ -160,12 +171,12 @@
         this.totalRows = this.items.length
     },
     methods: {
-      async info(item, index, button) {
+      async getCertificate(item, index, type) {
 
-        const fileName = item.ID + '_' + item.first_name + '_' + item.last_name + '_' + Date.now() + '.pdf';
+        const fileName = item.ID + '_' + 'CP Certificate ' + (type ? item.bname: item.gname) + '.pdf';
         try {
             this.$axios({
-                url: '/certificate/' + item.ID,
+                url: '/certificate/' + item.ID + '/' + type,
                 method: 'GET',
                 responseType: 'blob', // important
             }).then((response) => {

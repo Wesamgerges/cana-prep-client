@@ -95,6 +95,7 @@
         </b-button>               
       </template>
     </b-table>
+    <br/> <br/>
   </b-container>
 </template>
 
@@ -128,7 +129,8 @@
         currentPage: 1,
         perPage: 50,
         pageOptions: [ 25, 50, 100],
-        sortBy: 'gname',
+        sortBy: 'ID',
+        sortDesc: true,
         filter: null,
         loading: false,
         filterOn: [],       

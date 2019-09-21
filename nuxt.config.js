@@ -120,6 +120,7 @@ env: {
       home: '/login'
       
     },
+    maxAge: 86400,
     // watchLoggedIn: true,
     // rewriteRedirects: true
   },

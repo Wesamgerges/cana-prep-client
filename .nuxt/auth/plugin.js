@@ -8,7 +8,7 @@ import scheme_23514a38 from './schemes/oauth2.js'
 
 export default function (ctx, inject) {
   // Options
-  const options = {"resetOnError":false,"scopeKey":"role","rewriteRedirects":true,"fullPathRedirect":false,"watchLoggedIn":true,"redirect":{"login":"/login","logout":"/login","home":"/login","callback":"/auth/callback"},"vuex":{"namespace":"auth"},"cookie":false,"localStorage":{"prefix":"auth."},"token":{"prefix":"_token."},"refresh_token":{"prefix":"_refresh_token."},"defaultStrategy":"local"}
+  const options = {"resetOnError":false,"scopeKey":"role","rewriteRedirects":true,"fullPathRedirect":false,"watchLoggedIn":true,"redirect":{"login":"/login","logout":"/login","home":"/login","callback":"/auth/callback"},"vuex":{"namespace":"auth"},"cookie":false,"localStorage":{"prefix":"auth."},"token":{"prefix":"_token."},"refresh_token":{"prefix":"_refresh_token."},"defaultStrategy":"local","maxAge":86400}
 
   // Create a new Auth instance
   const $auth = new Auth(ctx, options)

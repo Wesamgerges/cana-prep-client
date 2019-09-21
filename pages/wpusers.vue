@@ -66,6 +66,8 @@
       sort-icon-left
       sticky-header 
       head-variant="dark"
+      sortBy='ID'
+      sortDesc= true
       :items="items"
       :fields="fields"
       :busy="loading"
@@ -129,8 +131,6 @@
         currentPage: 1,
         perPage: 50,
         pageOptions: [ 25, 50, 100],
-        sortBy: 'ID',
-        sortDesc: true,
         filter: null,
         loading: false,
         filterOn: [],       

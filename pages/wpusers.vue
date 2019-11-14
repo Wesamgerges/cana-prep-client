@@ -81,7 +81,7 @@
         <b-tr>
           <b-th class="bg-primary text-center" colspan="4"  style="border:none;">User</b-th>
           <b-th class="bg-primary text-center" colspan="12" style="border:none;">Lectures</b-th>
-          <b-th class="bg-primary text-center" colspan="3"  style="border:none;">Certificate</b-th>          
+          <b-th class="bg-primary text-center" colspan="5"  style="border:none;">Certificate</b-th>          
         </b-tr>
       </template>
 
@@ -94,8 +94,21 @@
       <template v-slot:cell(groom)="row"> 
         <b-button size="sm" @click="getCertificate(row.item, row.index, 0)" variant="primary" class="mr-1">
           Groom
-        </b-button>               
+        </b-button>            
       </template>
+
+        <template v-slot:cell(email_bride)="row"> 
+         <b-button size="sm" @click="getCertificate(row.item, row.index, 3)" variant="danger" class="mr-1">
+          Email Bride
+        </b-button>           
+      </template>
+
+      <template v-slot:cell(email_groom)="row"> 
+        <b-button size="sm" @click="getCertificate(row.item, row.index, 2)" variant="primary" class="mr-1">
+          Email Groom
+        </b-button>     
+      </template>
+
     </b-table>
     <br/> <br/>
   </b-container>
@@ -126,6 +139,8 @@
           { label: '12', key: 'lectures.12' },                      
           { key: 'bride', label: 'Bride' } ,
           { key: 'groom', label: 'Groom' }, 
+          { key: 'email_bride', label: 'Email Bride' } ,
+          { key: 'email_groom', label: 'Email Groom' }, 
         ],
         totalRows: 1,
         currentPage: 1,

@@ -1,6 +1,5 @@
 # client
 
-> Camp V4
 
 ## Build Setup
 

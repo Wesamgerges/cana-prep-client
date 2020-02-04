@@ -111,7 +111,7 @@ env: {
       },
       google: {
         // client_id: process.env.GOOGLE_APP_ID,
-        client_id: process.env.GOOGLE_APP_ID || '1067701340140-r3s0nd8u4t963s0vuib198vr18fd1otr.apps.googleusercontent.com',
+        client_id: process.env.GOOGLE_APP_ID || '<GOOGLE_APP_ID>',
       },
     },
     redirect: {

@@ -1,7 +1,7 @@
 // only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
   router: {
-    base: '/<repository-name>/'
+    base: 'cana-prep-client'
   }
 } : {}
 
@@ -83,6 +83,7 @@ env: {
     baseURL: process.env.API_BASE_URL || 'http://localhost:3333/api/v1'
   },
   router: {
+    base: 'cana-prep-client',
     middleware: ['auth'],
     extendRoutes(routes, resolve) {
       routes.push({
@@ -96,7 +97,7 @@ env: {
         component: resolve(__dirname, 'pages/auth/register.vue')
       })
     }
-    ...routerBase
+    
   },
   auth: {
     // plugins: ['~/plugins/auth.js'],

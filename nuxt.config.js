@@ -1,3 +1,9 @@
+// only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/<repository-name>/'
+  }
+} : {}
 
 export default {
   mode: 'spa',
@@ -90,6 +96,7 @@ env: {
         component: resolve(__dirname, 'pages/auth/register.vue')
       })
     }
+    ...routerBase
   },
   auth: {
     // plugins: ['~/plugins/auth.js'],

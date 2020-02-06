@@ -83,7 +83,7 @@ env: {
     baseURL: process.env.API_BASE_URL || 'http://localhost:3333/api/v1'
   },
   router: {
-    base: 'cana-prep-client',
+    base: '/cana-prep-client/',
     middleware: ['auth'],
     extendRoutes(routes, resolve) {
       routes.push({

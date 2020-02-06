@@ -29,6 +29,7 @@
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.8.3",
     "nodemon": "^1.18.9",
+    "push-dir": "^0.4.1",
     "sass": "^1.17.4",
     "sass-loader": "^7.1.0",
     "vue-cli-plugin-vuetify": "^0.6.3"

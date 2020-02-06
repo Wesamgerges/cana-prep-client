@@ -123,8 +123,8 @@ env: {
       },
     },
     redirect: {
-      "logout": "/login", 
-      "callback": "/auth/callback",
+      "logout": "/cana-prep-client/login", 
+      "callback": "/cana-prep-client/auth/callback",
       home: '/login'
       
     },
